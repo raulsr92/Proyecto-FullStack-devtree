@@ -3,24 +3,21 @@ import {Router} from "express"
 
 const router = Router()
 
-//Routing
+//============ Routing
 
-router.get('/', (req,res)=>{
+/*Ruta 1: Autenticación y Registro*/ 
 
-    res.send('Hola mundo desde el endpoint de Express')
 
-})
+router.post('/auth/register', (req,res)=>{
 
-router.get('/historial', (req,res)=>{
+    console.log("Desde Register")
 
-    res.send('Tu Historial')
+    console.log(req.body)
 
-})
-
-router.get('/blog', (req,res)=>{
-
-    res.send('Este es mi blog')
+    res.json(req.body)
 
 })
+
+
 
 export default router

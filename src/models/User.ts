@@ -1,7 +1,13 @@
 import mongoose from 'mongoose';
 const { Schema } = mongoose;
 
-const userSchema = new Schema({
+interface IUser{
+    name: string
+    email:string
+    password: string
+}
+
+const userSchema = new Schema<IUser>({
 
     name: {
         type: String,
@@ -13,7 +19,9 @@ const userSchema = new Schema({
         type: String,
         required:true,
         trim:true,
-        unique:true
+        unique:true,
+        lowercase:true,
+        match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ // regex para validar email
     },
 
     password:{
@@ -26,6 +34,6 @@ const userSchema = new Schema({
 
 //Crear el modelo Usuario
 
-const User = mongoose.model('User', userSchema)
+const UserModel = mongoose.model<IUser>('User', userSchema)
 
-export default User
+export default UserModel

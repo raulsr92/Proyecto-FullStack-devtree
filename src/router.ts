@@ -1,5 +1,6 @@
 
 import {Router} from "express"
+import UserModel from "./models/User"
 
 const router = Router()
 
@@ -8,13 +9,13 @@ const router = Router()
 /*Ruta 1: Autenticación y Registro*/ 
 
 
-router.post('/auth/register', (req,res)=>{
+router.post('/auth/register', async(req,res)=>{
 
     console.log("Desde Register")
 
-    console.log(req.body)
+    await UserModel.create(req.body)
 
-    res.json(req.body)
+    res.send({mensaje:"Usuario creado con exito"})
 
 })
 

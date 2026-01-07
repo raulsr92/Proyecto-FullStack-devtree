@@ -2,6 +2,8 @@
 import {Router} from "express"
 import UserModel from "./models/User"
 
+import { createAccount } from "./handlers"
+
 const router = Router()
 
 //============ Routing
@@ -9,15 +11,7 @@ const router = Router()
 /*Ruta 1: Autenticación y Registro*/ 
 
 
-router.post('/auth/register', async(req,res)=>{
-
-    console.log("Desde Register")
-
-    await UserModel.create(req.body)
-
-    res.send({mensaje:"Usuario creado con exito"})
-
-})
+router.post('/auth/register', createAccount)
 
 
 
